@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/task
+   		http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		http://code.alibabatech.com/schema/dubbo        
+		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<!-- 开发阶段取消访问注册中心,提高访问效率 
+		在提供方修改步骤: 修改注册地址  
+	-->
+	<!-- 搭建服务提供方 -->
+	<!-- 1 设置服务标志 -->
+	<dubbo:application name="service-solr"/>
+	<!-- 2 连接zookeeper注册中心 ip:192.168.200.128:2181 -->
+<!--	<dubbo:registry address="192.168.200.128:2181" protocol="zookeeper"/>-->
+	<dubbo:registry address="N/A"/>
+	<!-- 3 配置端口号 默认端口 20881 -->
+	<dubbo:protocol port="20881"/>
+	<!-- 4 配置对外暴露的接口 -->
+	<dubbo:service interface="com.ali.core.service.SearchService" ref="searchService"/>
+	
+		
+</beans>
